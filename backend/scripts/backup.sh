@@ -9,8 +9,8 @@ echo "invalid path"
 exit 1
 fi
 log_file_name=$(basename "$log_file")
-backup_file="backup.tar.gz"
+backup_file="/backup.tar.gz"
 backup_dir="/scripts/backend"
-tar -czf="$backup_file" -C / "$1"
+tar -czf="/$backup_file" -C / "$1"
 
 echo "task succesfull"
