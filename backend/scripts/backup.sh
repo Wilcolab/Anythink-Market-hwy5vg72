@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-chmod +x $0
-tar -czf /backup.tar.gz $1
+backup_file="/backup.tar.gz"  
+
+
+backup_file="/backup.tar.gz"
+tar -czf "$backup_file" "$1"
+exit 0
