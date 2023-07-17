@@ -17,17 +17,12 @@ if [ ! -f "$input_csv_file" ]; then
 fi
 
 # Output file to store the results
-output_txt_file="$(dirname "$input_csv_file")/output_names.txt"
+output_txt_file="output_names.txt"
 
 # Extract the first name and last name from the CSV file using awk and sed
 awk -F',' 'NR > 1 {print $3 " " $2}' "$input_csv_file" > "$output_txt_file"
 
-# Check if the output file was successfully created
-if [ ! -f "$output_txt_file" ]; then
-    echo "Error: Failed to create the output file: $output_txt_file"
-    exit 1
-fi
-
 # Display a success message and the contents of the output file
 echo "Extraction completed. Results stored in $output_txt_file."
-cat "$output_txt_file"
+cat backend/scripts/output_names.txt
+
