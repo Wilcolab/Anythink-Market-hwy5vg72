@@ -20,3 +20,4 @@ extract_names() {
 extract_names
 
 echo "Names extracted from '$input_file' and saved to '$output_file'."
+exit 0
