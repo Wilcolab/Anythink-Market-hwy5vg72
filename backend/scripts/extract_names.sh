@@ -1,6 +1,7 @@
 #!/bin/bash
 # Usage: scripts
 set -x
+set -e
 
 input_file="$1"
 output_file="output_names.txt"  
