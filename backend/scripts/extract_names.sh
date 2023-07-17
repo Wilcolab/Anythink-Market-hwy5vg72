@@ -8,7 +8,8 @@ if [ $# -ne 1 ]; then
 fi
 
 input_file="$1"
-output_file="output_names.txt"
+output_file="../../output_names.txt"
+
 
 # Check if the input file exists
 if [ ! -f "$input_file" ]; then
