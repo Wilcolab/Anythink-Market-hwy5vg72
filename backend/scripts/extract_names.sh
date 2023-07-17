@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 
 # Check if the correct number of arguments is provided
 if [ $# -ne 1 ]; then
@@ -23,11 +24,11 @@ if [ -f "$output_txt_file" ]; then
     rm "$output_txt_file"
 fi
 
-# Loop through the CSV file and extract first name + last name
-while IFS=',' read -r id last_name first_name email; do
+# Skip the header line in the CSV file
+tail -n +2 "$input_csv_file" | while IFS=',' read -r id last_name first_name email _ _; do
     full_name="$first_name $last_name"
     echo "$full_name"
     echo "$full_name" >> "$output_txt_file"
-done < "$input_csv_file"
+done
 
 echo "Extraction completed. Results stored in $output_txt_file."
