@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-#
+#!/bin/bash
 # Usage: scripts
 set -x
 
