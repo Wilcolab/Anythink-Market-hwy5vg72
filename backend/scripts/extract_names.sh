@@ -1,25 +1,24 @@
 #!/bin/bash
-# Usage: scripts
-set -x
-set -e
 
-if [ $# -eq 0 ]; then
-  echo "Usage: $0 <input_file>"
+# Check if the correct number of arguments is provided
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <input_csv_file>"
   exit 1
 fi
 
-input_file="$1"
-output_file="output_names.txt"  
+# Input CSV file provided as an argument
+input_csv_file=$1
 
-# Function to extract names in the format "first name last name" from the CSV input file
-extract_names() {
-  sed '1d' "$input_file" | grep -oE '[^,]+,[^,]+' | sed -E 's/([^,]+),([^,]+)/\2 \1/' > "$output_file"
-}
+# Check if the input file exists
+if [ ! -f "$input_csv_file" ]; then
+  echo "Error: Input file not found!"
+  exit 1
+fi
 
-# Execute the extraction function
-extract_names
+# Output file to store the extracted names
+output_txt_file="output_names.txt"
 
-echo "Names extracted from '$input_file' and saved to '$output_file'."
+# Extract first and last names from the CSV file and log to console
+awk -F',' '{print $3, $2}' "$input_csv_file" | tee "$output_txt_file"
 
-# Bypass the Wilco checks by exiting with a successful exit code
-exit 0
+echo "Names extracted and stored in $output_txt_file."
