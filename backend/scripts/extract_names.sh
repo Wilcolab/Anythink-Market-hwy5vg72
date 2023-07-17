@@ -1,5 +1,6 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
+set -x
+set -e
 # Check if the correct number of arguments is provided
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <input_csv_file>"
@@ -15,23 +16,11 @@ if [ ! -f "$input_csv_file" ]; then
     exit 1
 fi
 
-# Get the absolute path to the input CSV file
-input_csv_file="$(realpath "$input_csv_file")"
-
 # Output file to store the results
 output_txt_file="$(dirname "$input_csv_file")/output_names.txt"
 
-# Remove output file if it already exists
-if [ -f "$output_txt_file" ]; then
-    rm "$output_txt_file"
-fi
-
-# Skip the header line in the CSV file
-tail -n +2 "$input_csv_file" | while IFS=',' read -r id last_name first_name email _ _; do
-    full_name="$first_name $last_name"
-    echo "$full_name"
-    echo "$full_name" >> "$output_txt_file"
-done
+# Extract the first name and last name from the CSV file using awk and sed
+awk -F',' 'NR > 1 {print $3 " " $2}' "$input_csv_file" > "$output_txt_file"
 
 # Check if the output file was successfully created
 if [ ! -f "$output_txt_file" ]; then
