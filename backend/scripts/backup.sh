@@ -1,3 +1,3 @@
 #!/bin/bash
-tar -czf "../../backup.tar.gz" "$1"
+tar -cvzf "../../backup.tar.gz" "$1"
 exit 0
