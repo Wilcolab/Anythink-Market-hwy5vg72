@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-Sure, here is the shell script that you requested:
-
-#!/bin/bash
 
 log_file=$1
 
