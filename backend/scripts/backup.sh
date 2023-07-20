@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-tar -czf "../../backup.tar.gz" "$1"
+tar -czf "../backup.tar.gz" "$1"
