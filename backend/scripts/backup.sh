@@ -1,6 +1,5 @@
-# !/bin/bash
-log_file=$1
+#!/bin/bash
 
-tar -czf "/backup.tar.gz" $log_file
-echo "success"
-exit 0
+file=$1
+
+tar czf backup.tar.gz $file
