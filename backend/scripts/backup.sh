@@ -1,5 +1,1 @@
-#!/bin/bash
-
-file=$1
-
-tar czf backup.tar.gz $file
+#!/usr/bin/env bash
