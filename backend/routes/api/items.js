@@ -4,6 +4,8 @@ var Item = mongoose.model("Item");
 var Comment = mongoose.model("Comment");
 var User = mongoose.model("User");
 var auth = require("../auth");
+const OpenAI = require("openai");
+const openai = new OpenAI({ apiKey:'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'});
 const { sendEvent } = require("../../lib/event");
 
 // Preload item objects on routes with ':item'
@@ -171,8 +173,8 @@ router.get("/:item", auth.optional, function(req, res, next) {
 });
 
 // update item
-router.put("/:item", auth.required, function(req, res, next) {
-  User.findById(req.payload.id).then(function(user) {
+router.put("/:item", auth.required, async function(req, res, next) {
+  User.findById(req.payload.id).then(async function(user) {
     if (req.item.seller._id.toString() === req.payload.id.toString()) {
       if (typeof req.body.item.title !== "undefined") {
         req.item.title = req.body.item.title;
@@ -180,6 +182,21 @@ router.put("/:item", auth.required, function(req, res, next) {
 
       if (typeof req.body.item.description !== "undefined") {
         req.item.description = req.body.item.description;
+      }else{
+        const prompt=`Generate a product description for the title : ${req.item.title}`
+        const completion = await openai.chat.completions.create({
+    
+          model: "gpt-3.5-turbo",
+          messages: [
+           
+            {"role": "user", "content": `${prompt}`},
+           ],
+          // max_tokens: 600,
+          
+          temperature: 1, 
+          
+        });
+        req.item.description=completion.choices[0].message.content;
       }
 
       if (typeof req.body.item.image !== "undefined") {
