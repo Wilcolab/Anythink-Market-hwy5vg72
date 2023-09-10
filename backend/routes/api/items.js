@@ -5,7 +5,7 @@ var Comment = mongoose.model("Comment");
 var User = mongoose.model("User");
 var auth = require("../auth");
 const OpenAI = require("openai");
-const openai = new OpenAI({ apiKey:'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'});
+const openai = new OpenAI({ apiKey:'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'});
 const { sendEvent } = require("../../lib/event");
 
 // Preload item objects on routes with ':item'
