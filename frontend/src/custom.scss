@@ -61,10 +61,11 @@ body {
   min-width: 800px;
 }
 @media (max-width:480px){
+//  body background img i.e url resizing
   body{
     background-size: auto;
   }
-
+// sizing img
   img{
     width: 300px;
   }
