@@ -58,15 +58,10 @@ body {
 }
 
 .user-info {
-  min-width: 800px;
+  min-width: auto;
 }
-@media (max-width:480px){
-//  body background img i.e url resizing
-  body{
-    background-size: auto;
-  }
-// sizing img
-  img{
-    width: 300px;
+@media (max-width: 500px) {
+  .user-info {
+  min-width: auto !important;
   }
 }
