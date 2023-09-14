@@ -24,6 +24,7 @@ $theme-colors: (
 
 body {
   background-image: url("./imgs/background.png");
+
   background-position: top;
   background-repeat: no-repeat;
 }
@@ -58,4 +59,13 @@ body {
 
 .user-info {
   min-width: 800px;
+}
+@media (max-width:480px){
+  body{
+    background-size: auto;
+  }
+
+  img{
+    width: 300px;
+  }
 }
