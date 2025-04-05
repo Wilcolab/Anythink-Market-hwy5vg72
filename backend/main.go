@@ -24,7 +24,7 @@ func item(c *gin.Context){
 	names := []string{"Galactic Goggles","Meteor Muffins","Alien Antenna Kit","Starlight Lantern","Quantum Quill"}
 	items:= []Item{}
 	for i, name := range names{
-		items=append(items,Item{ID: i , Name : name})
+		items=append(items,Item{ID: i+1 , Name : name})
 	}
 	fmt.Println("************************************")
 	fmt.Print(items)
