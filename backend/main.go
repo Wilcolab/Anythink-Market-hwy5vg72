@@ -38,11 +38,12 @@ func additems(c *gin.Context){
 		return
 	}
 	var item_id = len(Listitems)+1
-	Listitems=append(Listitems,Items{ID: item_id, NAME: newItem.NAME,})
-	c.JSON(http.StatusOK, Items{ID: item_id, NAME: newItem.NAME,})
+	item := Items{ID: item_id, NAME: newItem.NAME}
+	Listitems=append(Listitems,newItem.NAME)
+	c.JSON(http.StatusOK, item)
 	
 
-	
+
 }
 func greet(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, "Welcome, Go navigator, to the Anythink cosmic catalog.")
