@@ -42,6 +42,7 @@ func additems(c *gin.Context){
 	c.JSON(http.StatusOK, Items{ID: item_id, NAME: newItem.NAME,})
 	
 
+	
 }
 func greet(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, "Welcome, Go navigator, to the Anythink cosmic catalog.")
