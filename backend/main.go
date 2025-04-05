@@ -21,7 +21,7 @@ type Item struct {
 	Name string `json:"name"`
 }
 var names = []string{"Galactic Goggles","Meteor Muffins","Alien Antenna Kit","Starlight Lantern","Quantum Quill"}
-var items= []Item{}
+
 
 type NewItem struct{
 	Name string `json:"name"`
@@ -40,7 +40,7 @@ c.JSON(http.StatusOK,  Item{ID: id_item, Name: newItem.Name})
 
 }
 func item(c *gin.Context){
-	
+	items = []Item{}
 	for i, name := range names{
 		items=append(items,Item{ID: i+1 , Name : name})
 	}
