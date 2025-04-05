@@ -8,11 +8,25 @@ import (
 func main() {
 	router := gin.Default()
 	router.GET("/", greet)
+	router.GET("/items", items)
 	router.HEAD("/healthcheck", healthcheck)
 
 	router.Run()
 }
+type Items struct{
+	ID int  `json:"id"`
+	NAME string  `json:"name"`
+}
 
+var Listitems= []string{"Galactic Goggles","Meteor Muffins","Alien Antenna Kit",	"Starlight Lantern","Quantum Quill"}
+
+func items(c *gin.Context){
+	 item := []Items{} 
+	for i,name := range Listitems{
+		item=append(item,Items{ID : i +1 ,NAME : name})
+	}
+	c.JSON(http.StatusOK,item )
+}
 func greet(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, "Welcome, Go navigator, to the Anythink cosmic catalog.")
 }
@@ -22,3 +36,5 @@ func healthcheck(c *gin.Context) {
 		"status": "ok",
 	})
 }
+
+
