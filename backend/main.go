@@ -69,7 +69,7 @@ if id < 1 || id > len(Listitems) {
  fmt.Println(id)
  fmt.Println("*********")
 
- it := &Listitems[id]
+ it := &Listitems[id-1]
 
  go func(t *Items){
 	t.ViewCount++
