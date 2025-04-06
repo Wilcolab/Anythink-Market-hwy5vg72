@@ -75,7 +75,7 @@ if id < 1 || id > len(Listitems) {
 	t.ViewCount++
 
  }(it)
- c.JSON(http.StatusOK, it.NAME)
+ c.JSON(http.StatusOK, it)
  
 }
 func greet(c *gin.Context) {
