@@ -12,7 +12,7 @@ func main() {
 	router.GET("/", greet)
 	router.GET("/items", items)
 	router.GET("/items/:id", getitems)
-	
+	router.GET("/items/popular", popular)
 	router.POST("/items", additems)
 
 	router.HEAD("/healthcheck", healthcheck)
@@ -52,6 +52,17 @@ func additems(c *gin.Context){
 	item := Items{ID: item_id, NAME: newItem.NAME }
 	Listitems=append(Listitems,item)
 	c.JSON(http.StatusOK, item)
+}
+func popular(c *gin.Context) {
+	
+	var count,id = 0,0;
+	for  i:= range Listitems{
+		if Listitems[i].ViewCount > count{
+
+			count,id=Listitems[i].ViewCount,i;
+		}
+	}
+	c.JSON(http.StatusOK, Listitems[id])
 }
 func getitems(c *gin.Context) {
  idstr := c.Param("id")
